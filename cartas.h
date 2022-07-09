@@ -185,3 +185,17 @@ void show(){
         printf("%s, %c, %d, %d, %d, %d\n", cartas[i].nome, cartas[i].tipo, cartas[i].hab[0], cartas[i].hab[1], cartas[i].hab[2], cartas[i].trunfo);
     }
 }
+
+void sorteio(){
+    int sorteio[23], i, j;
+    for (i = 0; i < 24; i++){
+        sorteio[i] = i;
+    }
+    for (i = 0; i < 24; i++){
+        j = 24 - (rand () % (24 - k)) - 1;
+        int tmp = vet[j];
+        vet[j] = vet[i];
+        vet[i] = tmp;
+        printf ("%d ", vet[i]);
+    }
+}

@@ -13,6 +13,7 @@ int main()
     system("clear");
     insertCartas();
     show();
+    embaralhar(sortear());
     
     return 0;
 }

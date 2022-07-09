@@ -186,16 +186,35 @@ void show(){
     }
 }
 
-void sorteio(){
+int sortear(){
     int sorteio[23], i, j;
     for (i = 0; i < 24; i++){
         sorteio[i] = i;
     }
     for (i = 0; i < 24; i++){
         j = 24 - (rand () % (24 - k)) - 1;
-        int tmp = vet[j];
-        vet[j] = vet[i];
-        vet[i] = tmp;
-        printf ("%d ", vet[i]);
+        int tmp = sorteio[j];
+        sorteio[j] = sorteio[i];
+        sorteio[i] = tmp;
+        printf ("%d ", sorteio[i]);      
+    }
+    return sorteio;
+}
+
+typedef struct{
+    char nome[50];
+    char tipo;
+    int hab[3];
+    int trunfo;
+} BaralhoEmbaralhado;
+
+BaralhoEmbaralhado cartasEmbaralhadas[n_cartas];
+
+void embaralhar(int sorteio[23]){
+    int i, i_aleatorio;
+    for(i=0; i<24; i++){9
+        //atribuir a posição i de cartasEmbaralhadas, a posição i_aleatorio que vai ser o indice correspondente do vetor sorteio
+        i_aleatorio = sorteio[i];
+        cartasEmbaralhadas[i] = cartas[i_aleatorio];v                                                                                                                                           zsxxxxx 2222222222222222222222222222222222222222222222222222    x6777777777777
     }
 }

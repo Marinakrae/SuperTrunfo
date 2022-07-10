@@ -8,6 +8,33 @@ typedef struct{
 } Baralho;
 
 Baralho cartas[n_cartas];
+
+typedef struct{
+    char nome[50];
+    char tipo;
+    int hab[3];
+    int trunfo;
+} BaralhoEmbaralhado;
+
+BaralhoEmbaralhado cartasEmbaralhadas[n_cartas];
+
+typedef struct{
+    char nome[50];
+    char tipo;
+    int hab[3];
+    int trunfo;
+}BaralhoA;
+
+BaralhoA baralhoa[12];
+
+typedef struct{
+    char nome[50];
+    char tipo;
+    int hab[3];
+    int trunfo;
+}BaralhoB;
+
+BaralhoB baralhob[12];
     
 void insertCartas(){
     strcpy(cartas[0].nome, "A");
@@ -180,41 +207,30 @@ void insertCartas(){
     
 }
 
-void show(){
-    for(int i=0;i<n_cartas;i++){
-        printf("%s, %c, %d, %d, %d, %d\n", cartas[i].nome, cartas[i].tipo, cartas[i].hab[0], cartas[i].hab[1], cartas[i].hab[2], cartas[i].trunfo);
-    }
-}
-
-int sortear(){
-    int sorteio[23], i, j;
+void sortear(){
+    int sorteio[24], i, j;
     for (i = 0; i < 24; i++){
         sorteio[i] = i;
     }
     for (i = 0; i < 24; i++){
-        j = 24 - (rand () % (24 - k)) - 1;
+        j = 24 - (rand () % (24 - i)) - 1;
         int tmp = sorteio[j];
         sorteio[j] = sorteio[i];
         sorteio[i] = tmp;
-        printf ("%d ", sorteio[i]);      
     }
-    return sorteio;
+    embaralhar(sorteio, cartas, cartasEmbaralhadas);
 }
 
-typedef struct{
-    char nome[50];
-    char tipo;
-    int hab[3];
-    int trunfo;
-} BaralhoEmbaralhado;
-
-BaralhoEmbaralhado cartasEmbaralhadas[n_cartas];
-
-void embaralhar(int sorteio[23]){
+void embaralhar(int sorteio[24], Baralho cartas[24], BaralhoEmbaralhado cartasEmbaralhadas[24]){
     int i, i_aleatorio;
-    for(i=0; i<24; i++){9
-        //atribuir a posição i de cartasEmbaralhadas, a posição i_aleatorio que vai ser o indice correspondente do vetor sorteio
+    for(i=0; i<24; i++){
         i_aleatorio = sorteio[i];
-        cartasEmbaralhadas[i] = cartas[i_aleatorio];v                                                                                                                                           zsxxxxx 2222222222222222222222222222222222222222222222222222    x6777777777777
+        strcpy(cartasEmbaralhadas[i].nome, cartas[i_aleatorio].nome);
+        cartasEmbaralhadas[i].tipo = cartas[i_aleatorio].tipo;
+        cartasEmbaralhadas[i].hab[0] = cartas[i_aleatorio].hab[0];
+        cartasEmbaralhadas[i].hab[1] = cartas[i_aleatorio].hab[1];
+        cartasEmbaralhadas[i].hab[2] = cartas[i_aleatorio].hab[2];
+        cartasEmbaralhadas[i].trunfo = cartas[i_aleatorio].trunfo;  
+        //printf("%s, %c, %d, %d, %d, %d\n", cartas[i_aleatorio].nome, cartas[i_aleatorio].tipo, cartas[i_aleatorio].hab[0], cartas[i_aleatorio].hab[1], cartas[i_aleatorio].hab[2], cartas[i_aleatorio].trunfo);
     }
 }

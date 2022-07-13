@@ -8,33 +8,9 @@ typedef struct{
 } Baralho;
 
 Baralho cartas[n_cartas];
-
-typedef struct{
-    char nome[50];
-    char tipo;
-    int hab[3];
-    int trunfo;
-} BaralhoEmbaralhado;
-
-BaralhoEmbaralhado cartasEmbaralhadas[n_cartas];
-
-typedef struct{
-    char nome[50];
-    char tipo;
-    int hab[3];
-    int trunfo;
-}BaralhoA;
-
-BaralhoA baralhoa[12];
-
-typedef struct{
-    char nome[50];
-    char tipo;
-    int hab[3];
-    int trunfo;
-}BaralhoB;
-
-BaralhoB baralhob[12];
+Baralho cartasEmbaralhadas[24];
+Baralho baralhoa[12];
+Baralho baralhob[12];
     
 void insertCartas(){
     strcpy(cartas[0].nome, "A");
@@ -221,7 +197,7 @@ void sortear(){
     embaralhar(sorteio, cartas, cartasEmbaralhadas);
 }
 
-void embaralhar(int sorteio[24], Baralho cartas[24], BaralhoEmbaralhado cartasEmbaralhadas[24]){
+void embaralhar(int sorteio[24], Baralho cartas[24], Baralho cartasEmbaralhadas[24]){
     int i, i_aleatorio;
     for(i=0; i<24; i++){
         i_aleatorio = sorteio[i];
@@ -236,7 +212,7 @@ void embaralhar(int sorteio[24], Baralho cartas[24], BaralhoEmbaralhado cartasEm
     separarCartas(cartasEmbaralhadas, baralhoa, baralhob);
 }
 
-void separarCartas(BaralhoEmbaralhado cartasEmbaralhadas[24], BaralhoA baralhoa[12], BaralhoB baralhob[12]){
+void separarCartas(Baralho cartasEmbaralhadas[24], Baralho baralhoa[12], Baralho baralhob[12]){
     int i;
     printf("Baralho A \n");
     for(i=0; i<12; i++){
@@ -261,5 +237,5 @@ void separarCartas(BaralhoEmbaralhado cartasEmbaralhadas[24], BaralhoA baralhoa[
         baralhob[j].trunfo = cartasEmbaralhadas[i].trunfo;
         printf("%s, %c, %d, %d, %d, %d\n", baralhob[j].nome, baralhob[j].tipo, baralhob[j].hab[0], baralhob[j].hab[1], baralhob[j].hab[2], baralhob[j].trunfo);
         i++;
-        }
+    }
 }

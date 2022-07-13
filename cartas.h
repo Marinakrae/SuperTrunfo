@@ -238,7 +238,7 @@ void embaralhar(int sorteio[24], Baralho cartas[24], BaralhoEmbaralhado cartasEm
 
 void separarCartas(BaralhoEmbaralhado cartasEmbaralhadas[24], BaralhoA baralhoa[12], BaralhoB baralhob[12]){
     int i;
-    //printf("Baralho A \n");
+    printf("Baralho A \n");
     for(i=0; i<12; i++){
         strcpy(baralhoa[i].nome, cartasEmbaralhadas[i].nome);
         baralhoa[i].tipo = cartasEmbaralhadas[i].tipo;
@@ -248,15 +248,18 @@ void separarCartas(BaralhoEmbaralhado cartasEmbaralhadas[24], BaralhoA baralhoa[
         baralhoa[i].trunfo = cartasEmbaralhadas[i].trunfo;
         printf("%s, %c, %d, %d, %d, %d\n", baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0], baralhoa[i].hab[1], baralhoa[i].hab[2], baralhoa[i].trunfo);
     }
-    //printf("\n");
-    //printf("Baralho B \n");
-    for(i=12; i<24; i++){
-        strcpy(baralhob[i].nome, cartasEmbaralhadas[i].nome);
-        baralhob[i].tipo = cartasEmbaralhadas[i].tipo;
-        baralhob[i].hab[0] = cartasEmbaralhadas[i].hab[0];
-        baralhob[i].hab[1] = cartasEmbaralhadas[i].hab[1];
-        baralhob[i].hab[2] = cartasEmbaralhadas[i].hab[2];
-        baralhob[i].trunfo = cartasEmbaralhadas[i].trunfo;
-        //printf("%s, %c, %d, %d, %d, %d\n", baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0], baralhob[i].hab[1], baralhob[i].hab[2], baralhob[i].trunfo);
+    printf("\n");
+    printf("Baralho B \n");
+    int j; 
+    i = 12;
+    for(j=0; j<12; j++){
+        strcpy(baralhob[j].nome, cartasEmbaralhadas[i].nome);
+        baralhob[j].tipo = cartasEmbaralhadas[i].tipo;
+        baralhob[j].hab[0] = cartasEmbaralhadas[i].hab[0];
+        baralhob[j].hab[1] = cartasEmbaralhadas[i].hab[1];
+        baralhob[j].hab[2] = cartasEmbaralhadas[i].hab[2];
+        baralhob[j].trunfo = cartasEmbaralhadas[i].trunfo;
+        printf("%s, %c, %d, %d, %d, %d\n", baralhob[j].nome, baralhob[j].tipo, baralhob[j].hab[0], baralhob[j].hab[1], baralhob[j].hab[2], baralhob[j].trunfo);
+        i++;
         }
 }

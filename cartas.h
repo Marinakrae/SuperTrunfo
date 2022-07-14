@@ -1,5 +1,3 @@
-#define n_cartas 24
-
 typedef struct{
     char nome[50];
     char tipo;
@@ -7,7 +5,7 @@ typedef struct{
     int trunfo;
 } Baralho;
 
-Baralho cartas[n_cartas];
+Baralho cartas[24];
 Baralho cartasEmbaralhadas[24];
 Baralho baralhoa[12];
 Baralho baralhob[12];
@@ -237,14 +235,14 @@ void separarCartas(Baralho cartasEmbaralhadas[24], Baralho baralhoa[12], Baralho
     jogo(baralhoa[12], baralhob[12]);
 }
 
-void juntarCartas(int aux[24], Baralho baralhoa[12], Baralho baralhob[12], int i, int fimA, int fimB){
-    baralhoa[fimA].nome = baralhoa[0].nome;
+void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], int i, int fimA, int fimB){
+     strcpy(baralhoa[fimA].nome, baralhoa[0].nome);
     baralhoa[fimA].tipo = baralhoa[0].tipo;
     baralhoa[fimA].hab[0] = baralhoa[0].hab[0];
     baralhoa[fimA].hab[1] = baralhoa[0].hab[1];
     baralhoa[fimA].hab[2] = baralhoa[0].hab[2];
     baralhoa[fimA].trunfo = baralhoa[0].trunfo;
-    baralhob[fimB].nome = baralhob[0].nome;
+    strcpy(baralhob[fimB].nome, baralhob[0].nome);
     baralhob[fimB].tipo = baralhob[0].tipo;
     baralhob[fimB].hab[0] = baralhob[0].hab[0];
     baralhob[fimB].hab[1] = baralhob[0].hab[1];
@@ -253,26 +251,27 @@ void juntarCartas(int aux[24], Baralho baralhoa[12], Baralho baralhob[12], int i
 }
 
 void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
-    int i, j, posAleatoria=-1, aux, fimA=12, fimB=12, aux[24];
+    int i=0, j, posAleatoria=-1, fimA=12, fimB=12;
     if(posAleatoria == -1){
         posAleatoria = rand()%3;
     }
-    while(fimA != 24 || fimB !=24){
-        while(baralhoa[i].hab[posAleatoria] == baralhob[i].hab[posAleatoria]){
-            aux[i].nome = baralhoa[i].nome;
+    printf("%d", baralhoa[i].hab[posAleatoria]);
+    while(fimA < 23 || fimB <23){
+        printf("%d", baralhoa[i].hab[posAleatoria]);
+        if(baralhoa[i].hab[posAleatoria] == baralhob[i].hab[posAleatoria]){
+            strcpy(aux[i].nome, baralhoa[i].nome);
             aux[i].tipo = baralhoa[i].tipo;
             aux[i].hab[0] = baralhoa[i].hab[0];
             aux[i].hab[1] = baralhoa[i].hab[1];
             aux[i].hab[2] = baralhoa[i].hab[2];
             aux[i].trunfo = baralhoa[i].trunfo;
-
-            aux[i+1].nome = baralhob[i].nome;
+            strcpy(aux[i+1].nome, baralhob[i].nome);
             aux[i+1].tipo = baralhob[i].tipo;
             aux[i+1].hab[0] = baralhob[i].hab[0];
             aux[i+1].hab[1] = baralhob[i].hab[1];
             aux[i+1].hab[2] = baralhob[i].hab[2];
             aux[i+1].trunfo = baralhob[i].trunfo;
-            juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB);
+            i++;
         }
         if(baralhoa[i].hab[posAleatoria] > baralhob[i].hab[posAleatoria]){
             fimA++;
@@ -285,7 +284,6 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
             posAleatoria = -1;
             juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB);
         }
-        getchar();
-        system("clear");
+        
     }
 }

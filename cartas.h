@@ -234,27 +234,63 @@ void separarCartas(Baralho cartasEmbaralhadas[24], Baralho baralhoa[12], Baralho
     }
 }
 
-void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], int i, int fimA, int fimB){
-    strcpy(baralhoa[fimA].nome, baralhoa[0].nome);
-    baralhoa[fimA].tipo = baralhoa[0].tipo;
-    baralhoa[fimA].hab[0] = baralhoa[0].hab[0];
-    baralhoa[fimA].hab[1] = baralhoa[0].hab[1];
-    baralhoa[fimA].hab[2] = baralhoa[0].hab[2];
-    baralhoa[fimA].trunfo = baralhoa[0].trunfo;
-    strcpy(baralhob[fimB].nome, baralhob[0].nome);
-    baralhob[fimB].tipo = baralhob[0].tipo;
-    baralhob[fimB].hab[0] = baralhob[0].hab[0];
-    baralhob[fimB].hab[1] = baralhob[0].hab[1];
-    baralhob[fimB].hab[2] = baralhob[0].hab[2];
-    baralhob[fimB].trunfo = baralhob[0].trunfo;
+void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], int i, int fimA, int fimB, int teste){
+    int j=1;
+    if(teste == 0){
+        strcpy(baralhoa[fimA-1].nome, baralhoa[0].nome);
+        baralhoa[fimA-1].tipo = baralhoa[0].tipo;
+        baralhoa[fimA-1].hab[0] = baralhoa[0].hab[0];
+        baralhoa[fimA-1].hab[1] = baralhoa[0].hab[1];
+        baralhoa[fimA-1].hab[2] = baralhoa[0].hab[2];
+        baralhoa[fimA-1].trunfo = baralhoa[0].trunfo;
+        strcpy(baralhoa[fimA].nome, baralhob[0].nome);
+        baralhoa[fimA].tipo = baralhob[0].tipo;
+        baralhoa[fimA].hab[0] = baralhob[0].hab[0];
+        baralhoa[fimA].hab[1] = baralhob[0].hab[1];
+        baralhoa[fimA].hab[2] = baralhob[0].hab[2];
+        baralhoa[fimA].trunfo = baralhob[0].trunfo;
+        for(i=0; i<fimA-1; i++){
+            strcpy(baralhoa[i].nome, baralhoa[j].nome);
+            baralhoa[i].tipo = baralhoa[j].tipo;
+            baralhoa[i].hab[0] = baralhoa[j].hab[0];
+            baralhoa[i].hab[1] = baralhoa[j].hab[1];
+            baralhoa[i].hab[2] = baralhoa[j].hab[2];
+            baralhoa[i].trunfo = baralhoa[j].trunfo;
+            j++;
+        }
+    } else if (teste == 1){
+        strcpy(baralhob[fimB-1].nome, baralhob[0].nome);
+        baralhob[fimB-1].tipo = baralhob[0].tipo;
+        baralhob[fimB-1].hab[0] = baralhob[0].hab[0];
+        baralhob[fimB-1].hab[1] = baralhob[0].hab[1];
+        baralhob[fimB-1].hab[2] = baralhob[0].hab[2];
+        baralhob[fimB-1].trunfo = baralhob[0].trunfo;
+        strcpy(baralhoa[fimA].nome, baralhoa[0].nome);
+        baralhob[fimB].tipo = baralhoa[0].tipo;
+        baralhob[fimB].hab[0] = baralhoa[0].hab[0];
+        baralhob[fimB].hab[1] = baralhoa[0].hab[1];
+        baralhob[fimB].hab[2] = baralhoa[0].hab[2];
+        baralhob[fimB].trunfo = baralhoa[0].trunfo;
+        for(i=0; i<fimB-1; i++){
+            strcpy(baralhob[i].nome, baralhob[j].nome);
+            baralhob[i].tipo = baralhob[j].tipo;
+            baralhob[i].hab[0] = baralhob[j].hab[0];
+            baralhob[i].hab[1] = baralhob[j].hab[1];
+            baralhob[i].hab[2] = baralhob[j].hab[2];
+            baralhob[i].trunfo = baralhob[j].trunfo;
+            j++;
+        }
+    }
 }
 
 void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
-    int i=0, j, posAleatoria=-1, fimA=12, fimB=12;
+    int i=0, j=0, posAleatoria=-1, fimA=12, fimB=12, teste=-1;
     if(posAleatoria == -1){
         posAleatoria = rand()%3;
     }
-    while(fimA < 23 || fimB <23){
+    while(fimA < 24 && fimB <24){
+        printf("Cartas jogador A: %d\n", fimA);
+        printf("Cartas jogador B: %d\n", fimB);
         printf("%s %c %d\t x \t%s %c %d\n", baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[posAleatoria], baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[posAleatoria]);
         posAleatoria = -1;
         if(posAleatoria == -1){
@@ -262,18 +298,19 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
         }
         getchar();
         if(baralhoa[i].hab[posAleatoria] == baralhob[i].hab[posAleatoria]){
-            strcpy(aux[i].nome, baralhoa[i].nome);
-            aux[i].tipo = baralhoa[i].tipo;
-            aux[i].hab[0] = baralhoa[i].hab[0];
-            aux[i].hab[1] = baralhoa[i].hab[1];
-            aux[i].hab[2] = baralhoa[i].hab[2];
-            aux[i].trunfo = baralhoa[i].trunfo;
-            strcpy(aux[i+1].nome, baralhob[i].nome);
-            aux[i+1].tipo = baralhob[i].tipo;
-            aux[i+1].hab[0] = baralhob[i].hab[0];
-            aux[i+1].hab[1] = baralhob[i].hab[1];
-            aux[i+1].hab[2] = baralhob[i].hab[2];
-            aux[i+1].trunfo = baralhob[i].trunfo;
+            strcpy(aux[i].nome, baralhoa[j].nome);
+            aux[i].tipo = baralhoa[j].tipo;
+            aux[i].hab[0] = baralhoa[j].hab[0];
+            aux[i].hab[1] = baralhoa[j].hab[1];
+            aux[i].hab[2] = baralhoa[j].hab[2];
+            aux[i].trunfo = baralhoa[j].trunfo;
+            i++;
+            strcpy(aux[i].nome, baralhob[j].nome);
+            aux[i].tipo = baralhob[j].tipo;
+            aux[i].hab[0] = baralhob[j].hab[0];
+            aux[i].hab[1] = baralhob[j].hab[1];
+            aux[i].hab[2] = baralhob[j].hab[2];
+            aux[i].trunfo = baralhob[j].trunfo;
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
@@ -281,20 +318,21 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
         if(baralhoa[i].hab[posAleatoria] > baralhob[i].hab[posAleatoria]){
             fimA++;
             fimB--;
+            teste=0;
             posAleatoria = -1;
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
-            //juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB);
-        } else {
+            juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB, teste);
+        } else if(baralhob[i].hab[posAleatoria] > baralhoa[i].hab[posAleatoria]) {
             fimA--;
             fimB++;
+            teste = 1;
             posAleatoria = -1;
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
-            //juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB);
+            juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB, teste);
         }
-        
     }
 }

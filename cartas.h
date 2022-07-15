@@ -333,6 +333,7 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
                 posAleatoria = rand()%3;
             }
             juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB, teste);
+            //teste
         }
     }
 }

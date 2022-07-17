@@ -237,82 +237,7 @@ void separarCartas(Baralho cartasEmbaralhadas[24], Baralho baralhoa[12], Baralho
     }
 }
 
-/*void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], int fimA, int fimB, int vencedor){
-    int j=1, k, l;
-    if(teste == 0){ //a ganhou
-        strcpy(baralhoa[fimA-1].nome, baralhoa[0].nome);
-        baralhoa[fimA-1].tipo = baralhoa[0].tipo;
-        baralhoa[fimA-1].hab[0] = baralhoa[0].hab[0];
-        baralhoa[fimA-1].hab[1] = baralhoa[0].hab[1];
-        baralhoa[fimA-1].hab[2] = baralhoa[0].hab[2];
-        baralhoa[fimA-1].trunfo = baralhoa[0].trunfo;
-        strcpy(baralhoa[fimA].nome, baralhob[0].nome);
-        baralhoa[fimA].tipo = baralhob[0].tipo;
-        baralhoa[fimA].hab[0] = baralhob[0].hab[0];
-        baralhoa[fimA].hab[1] = baralhob[0].hab[1];
-        baralhoa[fimA].hab[2] = baralhob[0].hab[2];
-        baralhoa[fimA].trunfo = baralhob[0].trunfo;
-        for(i=0; i<fimA; i++){
-            strcpy(baralhoa[i].nome, baralhoa[j].nome);
-            baralhoa[i].tipo = baralhoa[j].tipo;
-            baralhoa[i].hab[0] = baralhoa[j].hab[0];
-            baralhoa[i].hab[1] = baralhoa[j].hab[1];
-            baralhoa[i].hab[2] = baralhoa[j].hab[2];
-            baralhoa[i].trunfo = baralhoa[j].trunfo;
-            printf("%d cartas A: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
-            j++;
-        }
-        j=1;
-        for(k=0; k<fimB; k++){
-            strcpy(baralhob[k].nome, baralhob[j].nome);
-            baralhob[k].tipo = baralhob[j].tipo;
-            baralhob[k].hab[0] = baralhob[j].hab[0];
-            baralhob[k].hab[1] = baralhob[j].hab[1];
-            baralhob[k].hab[2] = baralhob[j].hab[2];
-            baralhob[k].trunfo = baralhob[j].trunfo;
-            printf("%d cartas B: %s %c %d\n", k, baralhob[k].nome, baralhob[k].tipo, baralhob[k].hab[0]);
-            j++;
-        }
-        
-    } else if (teste == 1){ //b ganhou 
-        strcpy(baralhob[fimB-1].nome, baralhob[0].nome);
-        baralhob[fimB-1].tipo = baralhob[0].tipo;
-        baralhob[fimB-1].hab[0] = baralhob[0].hab[0];
-        baralhob[fimB-1].hab[1] = baralhob[0].hab[1];
-        baralhob[fimB-1].hab[2] = baralhob[0].hab[2];
-        baralhob[fimB-1].trunfo = baralhob[0].trunfo;
-        strcpy(baralhob[fimB].nome, baralhoa[0].nome);
-        baralhob[fimB].tipo = baralhoa[0].tipo;
-        baralhob[fimB].hab[0] = baralhoa[0].hab[0];
-        baralhob[fimB].hab[1] = baralhoa[0].hab[1];
-        baralhob[fimB].hab[2] = baralhoa[0].hab[2];
-        baralhob[fimB].trunfo = baralhoa[0].trunfo;
-        for(i=0; i<fimB; i++){
-            strcpy(baralhob[i].nome, baralhob[j].nome);
-            baralhob[i].tipo = baralhob[j].tipo;
-            baralhob[i].hab[0] = baralhob[j].hab[0];
-            baralhob[i].hab[1] = baralhob[j].hab[1];
-            baralhob[i].hab[2] = baralhob[j].hab[2];
-            baralhob[i].trunfo = baralhob[j].trunfo;
-            printf("%d cartas B: %s %c %d\n", i, baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0]);
-            j++;
-        }
-        j=1;
-        for(l=0; l<fimA; l++){
-            strcpy(baralhoa[l].nome, baralhoa[j].nome);
-            baralhoa[l].tipo = baralhoa[j].tipo;
-            baralhoa[l].hab[0] = baralhoa[j].hab[0];
-            baralhoa[l].hab[1] = baralhoa[j].hab[1];
-            baralhoa[l].hab[2] = baralhoa[j].hab[2];
-            baralhoa[l].trunfo = baralhoa[j].trunfo;
-            printf("%d cartas A: %s %c %d\n", l, baralhoa[l].nome, baralhoa[l].tipo, baralhoa[l].hab[0]);
-            j++;
-        }
-    }
-}*/
-
 void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho baralhob[12], int vencedor){
-    // a venceu
     int i, j=1;
     if(vencedor == 0){
         strcpy(primeiraCarta[0].nome, baralhoa[0].nome);
@@ -321,19 +246,15 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
         primeiraCarta[0].hab[1] = baralhoa[0].hab[1];
         primeiraCarta[0].hab[2] = baralhoa[0].hab[2];
         primeiraCarta[0].trunfo = baralhoa[0].trunfo;
-        printf("primeira carta A VENCEDOR: %s %c %d\n", primeiraCarta[0].nome, primeiraCarta[0].tipo, primeiraCarta[0].hab[0]);
-        for(i=0; i<fimA-1; i++){
-            //Teste para não salvar uma posição vazia
-            
-            
-            
+        //printf("primeira carta A VENCEDOR: %s %c %d\n", primeiraCarta[0].nome, primeiraCarta[0].tipo, primeiraCarta[0].hab[0]);
+        for(i=0; i<fimA-1; i++){           
             strcpy(baralhoa[i].nome, baralhoa[j].nome);
             baralhoa[i].tipo = baralhoa[j].tipo;
             baralhoa[i].hab[0] = baralhoa[j].hab[0];
             baralhoa[i].hab[1] = baralhoa[j].hab[1];
             baralhoa[i].hab[2] = baralhoa[j].hab[2];
             baralhoa[i].trunfo = baralhoa[j].trunfo;
-            printf("%d cartas A VENCEDOR: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
+            //printf("%d cartas A VENCEDOR: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
             j++;
         }
         strcpy(baralhoa[fimA-1].nome, primeiraCarta[0].nome);
@@ -349,10 +270,10 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
         baralhoa[fimA].hab[2] = baralhob[0].hab[2];
         baralhoa[fimA].trunfo = baralhob[0].trunfo;
         j=1;
-    
+
         fimA++;
         fimB--;
-        printf("Tamanho do vetor B antes de atribuir: %d\n", fimA);
+        //printf("Tamanho do vetor B antes de atribuir: %d\n", fimA);
         
         for(i=0; i<fimB; i++){
             strcpy(baralhob[i].nome, baralhob[j].nome);
@@ -361,10 +282,10 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
             baralhob[i].hab[1] = baralhob[j].hab[1];
             baralhob[i].hab[2] = baralhob[j].hab[2];
             baralhob[i].trunfo = baralhob[j].trunfo;
-            printf("%d cartas B PERDEDOR: %s %c %d\n", i, baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0]);
+            //printf("%d cartas B PERDEDOR: %s %c %d\n", i, baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0]);
             j++;
         }
-        printf("Tamanho do vetor B dps: %d \n", fimB);
+        //printf("Tamanho do vetor B dps: %d \n", fimB);
     } else if(vencedor == 1){
         strcpy(primeiraCarta[0].nome, baralhob[0].nome);
         primeiraCarta[0].tipo = baralhob[0].tipo;
@@ -372,7 +293,7 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
         primeiraCarta[0].hab[1] = baralhob[0].hab[1];
         primeiraCarta[0].hab[2] = baralhob[0].hab[2];
         primeiraCarta[0].trunfo = baralhob[0].trunfo;
-        printf("primeira carta B VENCEDOR: %s %c %d\n", primeiraCarta[0].nome, primeiraCarta[0].tipo, primeiraCarta[0].hab[0]);
+        //printf("primeira carta B VENCEDOR: %s %c %d\n", primeiraCarta[0].nome, primeiraCarta[0].tipo, primeiraCarta[0].hab[0]);
         for(i=0; i<fimB-1; i++){
             strcpy(baralhob[i].nome, baralhob[j].nome);
             baralhob[i].tipo = baralhob[j].tipo;
@@ -399,8 +320,6 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
         fimB++;
         fimA--;
         
-        printf("Tamanho do vetor A antes de atribuir: %d\n", fimA);
-        
         for(i=0; i<fimA; i++){
             strcpy(baralhoa[i].nome, baralhoa[j].nome);
             baralhoa[i].tipo = baralhoa[j].tipo;
@@ -408,15 +327,54 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
             baralhoa[i].hab[1] = baralhoa[j].hab[1];
             baralhoa[i].hab[2] = baralhoa[j].hab[2];
             baralhoa[i].trunfo = baralhoa[j].trunfo;
-            printf("%d cartas A PERDEDOR: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
+            //printf("%d cartas A PERDEDOR: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
             j++;
         }
-        printf("Tamanho do vetor A dps: %d \n", fimA);
+        //printf("Tamanho do vetor A dps: %d \n", fimA);
+    }
+}
+
+void reordenarEmpate(Baralho empate[24], int fimEmpate, Baralho baralhoa[12], Baralho baralhob[12], int vencedor){
+    int i, j=1;
+    for(i=0; i<fimEmpate; i++){
+        strcpy(empate[i].nome, baralhoa[0].nome);
+        empate[i].tipo = baralhoa[0].tipo;
+        empate[i].hab[0] = baralhoa[0].hab[0];
+        empate[i].hab[1] = baralhoa[0].hab[1];
+        empate[i].hab[2] = baralhoa[0].hab[2];
+        empate[i].trunfo = baralhoa[0].trunfo;
+        i++;
+        strcpy(empate[i].nome, baralhob[0].nome);
+        empate[i].tipo = baralhob[0].tipo;
+        empate[i].hab[0] = baralhob[0].hab[0];
+        empate[i].hab[1] = baralhob[0].hab[1];
+        empate[i].hab[2] = baralhob[0].hab[2];
+        empate[i].trunfo = baralhob[0].trunfo;
+    }
+    if(vencedor == 0){
+        for(i=fimA; i<fimA+fimEmpate; i++){
+            strcpy(baralhoa[i].nome, empate[i].nome);
+            baralhoa[i].tipo = empate[i].tipo;
+            baralhoa[i].hab[0] = empate[i].hab[0];
+            baralhoa[i].hab[1] = empate[i].hab[1];
+            baralhoa[i].hab[2] = empate[i].hab[2];
+            baralhoa[i].trunfo = empate[i].trunfo;
+        }
+    }
+    if(vencedor == 1){
+        for(i=fimB; i<fimB+fimEmpate; i++){
+            strcpy(baralhob[i].nome, empate[i].nome);
+            baralhob[i].tipo = empate[i].tipo;
+            baralhob[i].hab[0] = empate[i].hab[0];
+            baralhob[i].hab[1] = empate[i].hab[1];
+            baralhob[i].hab[2] = empate[i].hab[2];
+            baralhob[i].trunfo = empate[i].trunfo;
+        }
     }
 }
 
 void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
-    int i=0, j=0, posAleatoria=-1, vencedor=-1;
+    int i=0, j=0, posAleatoria=-1, vencedor=-1, fimEmpate=-1, houveEmpate = -1;
     while(fimA < 24 && fimB <24){
         if(posAleatoria == -1){
             posAleatoria = rand()%3;
@@ -427,25 +385,20 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
         
         getchar();
         if(baralhoa[i].hab[posAleatoria] == baralhob[i].hab[posAleatoria]){
-            strcpy(empate[i].nome, baralhoa[j].nome);
-            empate[i].tipo = baralhoa[j].tipo;
-            empate[i].hab[0] = baralhoa[j].hab[0];
-            empate[i].hab[1] = baralhoa[j].hab[1];
-            empate[i].hab[2] = baralhoa[j].hab[2];
-            empate[i].trunfo = baralhoa[j].trunfo;
-            i++;
-            strcpy(empate[i].nome, baralhob[j].nome);
-            empate[i].tipo = baralhob[j].tipo;
-            empate[i].hab[0] = baralhob[j].hab[0];
-            empate[i].hab[1] = baralhob[j].hab[1];
-            empate[i].hab[2] = baralhob[j].hab[2];
-            empate[i].trunfo = baralhob[j].trunfo;
+            fimEmpate += 2;
+            fimA--;
+            fimB--;
+            houveEmpate = 1;
+            reordenarEmpate(empate, fimEmpate, baralhoa, baralhob, vencedor);
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
         }
         if(baralhoa[i].hab[posAleatoria] > baralhob[i].hab[posAleatoria]){
             vencedor=0;
+            if(houveEmpate == 1){
+                reordenarEmpate(empate, fimEmpate, baralhoa, baralhob, vencedor);
+            }
             reordenarCartas(primeiraCarta, baralhoa, baralhob, vencedor);
             posAleatoria = -1;
             if(posAleatoria == -1){
@@ -453,6 +406,9 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
             }
         } else if(baralhob[i].hab[posAleatoria] > baralhoa[i].hab[posAleatoria]) {
             vencedor=1;
+            if(houveEmpate == 1){
+                reordenarEmpate(empate, fimEmpate, baralhoa, baralhob, vencedor);
+            }
             reordenarCartas(primeiraCarta, baralhoa, baralhob, vencedor);
             posAleatoria = -1;
             if(posAleatoria == -1){

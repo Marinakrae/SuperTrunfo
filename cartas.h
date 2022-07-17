@@ -418,13 +418,6 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
 void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
     int i=0, j=0, posAleatoria=-1, vencedor=-1;
     while(fimA < 24 && fimB <24){
-<<<<<<< Updated upstream
-=======
-        printf("Cartas jogador A: %d\n", fimA);
-        printf("Cartas jogador B: %d\n", fimB);
-        printf("%s %c %d\t x \t%s %c %d\n", baralhoa[0].nome, baralhoa[0].tipo, baralhoa[0].hab[posAleatoria], baralhob[0].nome, baralhob[0].tipo, baralhob[0].hab[posAleatoria]);
-        posAleatoria = -1;
->>>>>>> Stashed changes
         if(posAleatoria == -1){
             posAleatoria = rand()%3;
         }
@@ -433,7 +426,6 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
         printf("%s %c %d\t x \t%s %c %d\n", baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[posAleatoria], baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[posAleatoria]);
         
         getchar();
-<<<<<<< Updated upstream
         if(baralhoa[i].hab[posAleatoria] == baralhob[i].hab[posAleatoria]){
             strcpy(empate[i].nome, baralhoa[j].nome);
             empate[i].tipo = baralhoa[j].tipo;
@@ -441,15 +433,6 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
             empate[i].hab[1] = baralhoa[j].hab[1];
             empate[i].hab[2] = baralhoa[j].hab[2];
             empate[i].trunfo = baralhoa[j].trunfo;
-=======
-        /*if(baralhoa[0].hab[posAleatoria] == baralhob[0].hab[posAleatoria]){
-            strcpy(aux[i].nome, baralhoa[j].nome);
-            aux[i].tipo = baralhoa[j].tipo;
-            aux[i].hab[0] = baralhoa[j].hab[0];
-            aux[i].hab[1] = baralhoa[j].hab[1];
-            aux[i].hab[2] = baralhoa[j].hab[2];
-            aux[i].trunfo = baralhoa[j].trunfo;
->>>>>>> Stashed changes
             i++;
             strcpy(empate[i].nome, baralhob[j].nome);
             empate[i].tipo = baralhob[j].tipo;
@@ -460,33 +443,17 @@ void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
-<<<<<<< Updated upstream
         }
         if(baralhoa[i].hab[posAleatoria] > baralhob[i].hab[posAleatoria]){
             vencedor=0;
             reordenarCartas(primeiraCarta, baralhoa, baralhob, vencedor);
-=======
-        }*/
-        if(baralhoa[0].hab[posAleatoria] >= baralhob[0].hab[posAleatoria]){
-            fimA++;
-            fimB--;
-            teste=0;
->>>>>>> Stashed changes
             posAleatoria = -1;
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
-<<<<<<< Updated upstream
         } else if(baralhob[i].hab[posAleatoria] > baralhoa[i].hab[posAleatoria]) {
             vencedor=1;
             reordenarCartas(primeiraCarta, baralhoa, baralhob, vencedor);
-=======
-            juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB, teste);
-        } else if(baralhob[0].hab[posAleatoria] > baralhoa[0].hab[posAleatoria]) {
-            fimA--;
-            fimB++;
-            teste = 1;
->>>>>>> Stashed changes
             posAleatoria = -1;
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;

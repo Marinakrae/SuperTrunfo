@@ -315,7 +315,6 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
     // a venceu
     int i, j=1;
     if(vencedor == 0){
-        fimA++;
         strcpy(primeiraCarta[0].nome, baralhoa[0].nome);
         primeiraCarta[0].tipo = baralhoa[0].tipo;
         primeiraCarta[0].hab[0] = baralhoa[0].hab[0];
@@ -324,6 +323,10 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
         primeiraCarta[0].trunfo = baralhoa[0].trunfo;
         printf("primeira carta A VENCEDOR: %s %c %d\n", primeiraCarta[0].nome, primeiraCarta[0].tipo, primeiraCarta[0].hab[0]);
         for(i=0; i<fimA-1; i++){
+            //Teste para não salvar uma posição vazia
+            
+            
+            
             strcpy(baralhoa[i].nome, baralhoa[j].nome);
             baralhoa[i].tipo = baralhoa[j].tipo;
             baralhoa[i].hab[0] = baralhoa[j].hab[0];
@@ -346,6 +349,11 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
         baralhoa[fimA].hab[2] = baralhob[0].hab[2];
         baralhoa[fimA].trunfo = baralhob[0].trunfo;
         j=1;
+    
+        fimA++;
+        fimB--;
+        printf("Tamanho do vetor B antes de atribuir: %d\n", fimA);
+        
         for(i=0; i<fimB; i++){
             strcpy(baralhob[i].nome, baralhob[j].nome);
             baralhob[i].tipo = baralhob[j].tipo;
@@ -356,9 +364,8 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
             printf("%d cartas B PERDEDOR: %s %c %d\n", i, baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0]);
             j++;
         }
-        fimB--;
+        printf("Tamanho do vetor B dps: %d \n", fimB);
     } else if(vencedor == 1){
-        fimB++;
         strcpy(primeiraCarta[0].nome, baralhob[0].nome);
         primeiraCarta[0].tipo = baralhob[0].tipo;
         primeiraCarta[0].hab[0] = baralhob[0].hab[0];
@@ -373,7 +380,6 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
             baralhob[i].hab[1] = baralhob[j].hab[1];
             baralhob[i].hab[2] = baralhob[j].hab[2];
             baralhob[i].trunfo = baralhob[j].trunfo;
-            printf("%d cartas B VENCEDOR: %s %c %d\n", i, baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0]);
             j++;
         }
         strcpy(baralhob[fimB-1].nome, primeiraCarta[0].nome);
@@ -389,6 +395,12 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
         baralhob[fimB].hab[2] = baralhoa[0].hab[2];
         baralhob[fimB].trunfo = baralhoa[0].trunfo;
         j=1;
+        
+        fimB++;
+        fimA--;
+        
+        printf("Tamanho do vetor A antes de atribuir: %d\n", fimA);
+        
         for(i=0; i<fimA; i++){
             strcpy(baralhoa[i].nome, baralhoa[j].nome);
             baralhoa[i].tipo = baralhoa[j].tipo;
@@ -399,7 +411,7 @@ void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho bar
             printf("%d cartas A PERDEDOR: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
             j++;
         }
-        fimA--;
+        printf("Tamanho do vetor A dps: %d \n", fimA);
     }
 }
 

@@ -9,7 +9,10 @@ Baralho cartas[24];
 Baralho cartasEmbaralhadas[24];
 Baralho baralhoa[12];
 Baralho baralhob[12];
-Baralho aux[24];
+Baralho primeiraCarta[1];
+Baralho empate[24];
+
+int fimA=12, fimB=12;
     
 void insertCartas(){
     strcpy(cartas[0].nome, "A");
@@ -234,9 +237,9 @@ void separarCartas(Baralho cartasEmbaralhadas[24], Baralho baralhoa[12], Baralho
     }
 }
 
-void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], int i, int fimA, int fimB, int teste){
-    int j=1;
-    if(teste == 0){
+/*void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], int fimA, int fimB, int vencedor){
+    int j=1, k, l;
+    if(teste == 0){ //a ganhou
         strcpy(baralhoa[fimA-1].nome, baralhoa[0].nome);
         baralhoa[fimA-1].tipo = baralhoa[0].tipo;
         baralhoa[fimA-1].hab[0] = baralhoa[0].hab[0];
@@ -249,6 +252,77 @@ void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], i
         baralhoa[fimA].hab[1] = baralhob[0].hab[1];
         baralhoa[fimA].hab[2] = baralhob[0].hab[2];
         baralhoa[fimA].trunfo = baralhob[0].trunfo;
+        for(i=0; i<fimA; i++){
+            strcpy(baralhoa[i].nome, baralhoa[j].nome);
+            baralhoa[i].tipo = baralhoa[j].tipo;
+            baralhoa[i].hab[0] = baralhoa[j].hab[0];
+            baralhoa[i].hab[1] = baralhoa[j].hab[1];
+            baralhoa[i].hab[2] = baralhoa[j].hab[2];
+            baralhoa[i].trunfo = baralhoa[j].trunfo;
+            printf("%d cartas A: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
+            j++;
+        }
+        j=1;
+        for(k=0; k<fimB; k++){
+            strcpy(baralhob[k].nome, baralhob[j].nome);
+            baralhob[k].tipo = baralhob[j].tipo;
+            baralhob[k].hab[0] = baralhob[j].hab[0];
+            baralhob[k].hab[1] = baralhob[j].hab[1];
+            baralhob[k].hab[2] = baralhob[j].hab[2];
+            baralhob[k].trunfo = baralhob[j].trunfo;
+            printf("%d cartas B: %s %c %d\n", k, baralhob[k].nome, baralhob[k].tipo, baralhob[k].hab[0]);
+            j++;
+        }
+        
+    } else if (teste == 1){ //b ganhou 
+        strcpy(baralhob[fimB-1].nome, baralhob[0].nome);
+        baralhob[fimB-1].tipo = baralhob[0].tipo;
+        baralhob[fimB-1].hab[0] = baralhob[0].hab[0];
+        baralhob[fimB-1].hab[1] = baralhob[0].hab[1];
+        baralhob[fimB-1].hab[2] = baralhob[0].hab[2];
+        baralhob[fimB-1].trunfo = baralhob[0].trunfo;
+        strcpy(baralhob[fimB].nome, baralhoa[0].nome);
+        baralhob[fimB].tipo = baralhoa[0].tipo;
+        baralhob[fimB].hab[0] = baralhoa[0].hab[0];
+        baralhob[fimB].hab[1] = baralhoa[0].hab[1];
+        baralhob[fimB].hab[2] = baralhoa[0].hab[2];
+        baralhob[fimB].trunfo = baralhoa[0].trunfo;
+        for(i=0; i<fimB; i++){
+            strcpy(baralhob[i].nome, baralhob[j].nome);
+            baralhob[i].tipo = baralhob[j].tipo;
+            baralhob[i].hab[0] = baralhob[j].hab[0];
+            baralhob[i].hab[1] = baralhob[j].hab[1];
+            baralhob[i].hab[2] = baralhob[j].hab[2];
+            baralhob[i].trunfo = baralhob[j].trunfo;
+            printf("%d cartas B: %s %c %d\n", i, baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0]);
+            j++;
+        }
+        j=1;
+        for(l=0; l<fimA; l++){
+            strcpy(baralhoa[l].nome, baralhoa[j].nome);
+            baralhoa[l].tipo = baralhoa[j].tipo;
+            baralhoa[l].hab[0] = baralhoa[j].hab[0];
+            baralhoa[l].hab[1] = baralhoa[j].hab[1];
+            baralhoa[l].hab[2] = baralhoa[j].hab[2];
+            baralhoa[l].trunfo = baralhoa[j].trunfo;
+            printf("%d cartas A: %s %c %d\n", l, baralhoa[l].nome, baralhoa[l].tipo, baralhoa[l].hab[0]);
+            j++;
+        }
+    }
+}*/
+
+void reordenarCartas(Baralho primeiraCarta[1], Baralho baralhoa[12], Baralho baralhob[12], int vencedor){
+    // a venceu
+    int i, j=1;
+    if(vencedor == 0){
+        fimA++;
+        strcpy(primeiraCarta[0].nome, baralhoa[0].nome);
+        primeiraCarta[0].tipo = baralhoa[0].tipo;
+        primeiraCarta[0].hab[0] = baralhoa[0].hab[0];
+        primeiraCarta[0].hab[1] = baralhoa[0].hab[1];
+        primeiraCarta[0].hab[2] = baralhoa[0].hab[2];
+        primeiraCarta[0].trunfo = baralhoa[0].trunfo;
+        printf("primeira carta A VENCEDOR: %s %c %d\n", primeiraCarta[0].nome, primeiraCarta[0].tipo, primeiraCarta[0].hab[0]);
         for(i=0; i<fimA-1; i++){
             strcpy(baralhoa[i].nome, baralhoa[j].nome);
             baralhoa[i].tipo = baralhoa[j].tipo;
@@ -256,21 +330,42 @@ void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], i
             baralhoa[i].hab[1] = baralhoa[j].hab[1];
             baralhoa[i].hab[2] = baralhoa[j].hab[2];
             baralhoa[i].trunfo = baralhoa[j].trunfo;
+            printf("%d cartas A VENCEDOR: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
             j++;
         }
-    } else if (teste == 1){
-        strcpy(baralhob[fimB-1].nome, baralhob[0].nome);
-        baralhob[fimB-1].tipo = baralhob[0].tipo;
-        baralhob[fimB-1].hab[0] = baralhob[0].hab[0];
-        baralhob[fimB-1].hab[1] = baralhob[0].hab[1];
-        baralhob[fimB-1].hab[2] = baralhob[0].hab[2];
-        baralhob[fimB-1].trunfo = baralhob[0].trunfo;
-        strcpy(baralhoa[fimA].nome, baralhoa[0].nome);
-        baralhob[fimB].tipo = baralhoa[0].tipo;
-        baralhob[fimB].hab[0] = baralhoa[0].hab[0];
-        baralhob[fimB].hab[1] = baralhoa[0].hab[1];
-        baralhob[fimB].hab[2] = baralhoa[0].hab[2];
-        baralhob[fimB].trunfo = baralhoa[0].trunfo;
+        strcpy(baralhoa[fimA-1].nome, primeiraCarta[0].nome);
+        baralhoa[fimA-1].tipo = primeiraCarta[0].tipo;
+        baralhoa[fimA-1].hab[0] = primeiraCarta[0].hab[0];
+        baralhoa[fimA-1].hab[1] = primeiraCarta[0].hab[1];
+        baralhoa[fimA-1].hab[2] = primeiraCarta[0].hab[2];
+        baralhoa[fimA-1].trunfo = primeiraCarta[0].trunfo;
+        strcpy(baralhoa[fimA].nome, baralhob[0].nome);
+        baralhoa[fimA].tipo = baralhob[0].tipo;
+        baralhoa[fimA].hab[0] = baralhob[0].hab[0];
+        baralhoa[fimA].hab[1] = baralhob[0].hab[1];
+        baralhoa[fimA].hab[2] = baralhob[0].hab[2];
+        baralhoa[fimA].trunfo = baralhob[0].trunfo;
+        j=1;
+        for(i=0; i<fimB; i++){
+            strcpy(baralhob[i].nome, baralhob[j].nome);
+            baralhob[i].tipo = baralhob[j].tipo;
+            baralhob[i].hab[0] = baralhob[j].hab[0];
+            baralhob[i].hab[1] = baralhob[j].hab[1];
+            baralhob[i].hab[2] = baralhob[j].hab[2];
+            baralhob[i].trunfo = baralhob[j].trunfo;
+            printf("%d cartas B PERDEDOR: %s %c %d\n", i, baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0]);
+            j++;
+        }
+        fimB--;
+    } else if(vencedor == 1){
+        fimB++;
+        strcpy(primeiraCarta[0].nome, baralhob[0].nome);
+        primeiraCarta[0].tipo = baralhob[0].tipo;
+        primeiraCarta[0].hab[0] = baralhob[0].hab[0];
+        primeiraCarta[0].hab[1] = baralhob[0].hab[1];
+        primeiraCarta[0].hab[2] = baralhob[0].hab[2];
+        primeiraCarta[0].trunfo = baralhob[0].trunfo;
+        printf("primeira carta B VENCEDOR: %s %c %d\n", primeiraCarta[0].nome, primeiraCarta[0].tipo, primeiraCarta[0].hab[0]);
         for(i=0; i<fimB-1; i++){
             strcpy(baralhob[i].nome, baralhob[j].nome);
             baralhob[i].tipo = baralhob[j].tipo;
@@ -278,62 +373,79 @@ void juntarCartas(Baralho aux[24], Baralho baralhoa[12], Baralho baralhob[12], i
             baralhob[i].hab[1] = baralhob[j].hab[1];
             baralhob[i].hab[2] = baralhob[j].hab[2];
             baralhob[i].trunfo = baralhob[j].trunfo;
+            printf("%d cartas B VENCEDOR: %s %c %d\n", i, baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[0]);
             j++;
         }
+        strcpy(baralhob[fimB-1].nome, primeiraCarta[0].nome);
+        baralhob[fimB-1].tipo = primeiraCarta[0].tipo;
+        baralhob[fimB-1].hab[0] = primeiraCarta[0].hab[0];
+        baralhob[fimB-1].hab[1] = primeiraCarta[0].hab[1];
+        baralhob[fimB-1].hab[2] = primeiraCarta[0].hab[2];
+        baralhob[fimB-1].trunfo = primeiraCarta[0].trunfo;
+        strcpy(baralhob[fimB].nome, baralhoa[0].nome);
+        baralhob[fimB].tipo = baralhoa[0].tipo;
+        baralhob[fimB].hab[0] = baralhoa[0].hab[0];
+        baralhob[fimB].hab[1] = baralhoa[0].hab[1];
+        baralhob[fimB].hab[2] = baralhoa[0].hab[2];
+        baralhob[fimB].trunfo = baralhoa[0].trunfo;
+        j=1;
+        for(i=0; i<fimA; i++){
+            strcpy(baralhoa[i].nome, baralhoa[j].nome);
+            baralhoa[i].tipo = baralhoa[j].tipo;
+            baralhoa[i].hab[0] = baralhoa[j].hab[0];
+            baralhoa[i].hab[1] = baralhoa[j].hab[1];
+            baralhoa[i].hab[2] = baralhoa[j].hab[2];
+            baralhoa[i].trunfo = baralhoa[j].trunfo;
+            printf("%d cartas A PERDEDOR: %s %c %d\n", i, baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[0]);
+            j++;
+        }
+        fimA--;
     }
 }
 
 void jogo(Baralho baralhoa[12], Baralho baralhob[12]){
-    int i=0, j=0, posAleatoria=-1, fimA=12, fimB=12, teste=-1;
-    if(posAleatoria == -1){
-        posAleatoria = rand()%3;
-    }
+    int i=0, j=0, posAleatoria=-1, vencedor=-1;
     while(fimA < 24 && fimB <24){
-        printf("Cartas jogador A: %d\n", fimA);
-        printf("Cartas jogador B: %d\n", fimB);
-        printf("%s %c %d\t x \t%s %c %d\n", baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[posAleatoria], baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[posAleatoria]);
-        posAleatoria = -1;
         if(posAleatoria == -1){
             posAleatoria = rand()%3;
         }
+        printf("Cartas jogador A: %d\n", fimA);
+        printf("Cartas jogador B: %d\n", fimB);
+        printf("%s %c %d\t x \t%s %c %d\n", baralhoa[i].nome, baralhoa[i].tipo, baralhoa[i].hab[posAleatoria], baralhob[i].nome, baralhob[i].tipo, baralhob[i].hab[posAleatoria]);
+        
         getchar();
         if(baralhoa[i].hab[posAleatoria] == baralhob[i].hab[posAleatoria]){
-            strcpy(aux[i].nome, baralhoa[j].nome);
-            aux[i].tipo = baralhoa[j].tipo;
-            aux[i].hab[0] = baralhoa[j].hab[0];
-            aux[i].hab[1] = baralhoa[j].hab[1];
-            aux[i].hab[2] = baralhoa[j].hab[2];
-            aux[i].trunfo = baralhoa[j].trunfo;
+            strcpy(empate[i].nome, baralhoa[j].nome);
+            empate[i].tipo = baralhoa[j].tipo;
+            empate[i].hab[0] = baralhoa[j].hab[0];
+            empate[i].hab[1] = baralhoa[j].hab[1];
+            empate[i].hab[2] = baralhoa[j].hab[2];
+            empate[i].trunfo = baralhoa[j].trunfo;
             i++;
-            strcpy(aux[i].nome, baralhob[j].nome);
-            aux[i].tipo = baralhob[j].tipo;
-            aux[i].hab[0] = baralhob[j].hab[0];
-            aux[i].hab[1] = baralhob[j].hab[1];
-            aux[i].hab[2] = baralhob[j].hab[2];
-            aux[i].trunfo = baralhob[j].trunfo;
+            strcpy(empate[i].nome, baralhob[j].nome);
+            empate[i].tipo = baralhob[j].tipo;
+            empate[i].hab[0] = baralhob[j].hab[0];
+            empate[i].hab[1] = baralhob[j].hab[1];
+            empate[i].hab[2] = baralhob[j].hab[2];
+            empate[i].trunfo = baralhob[j].trunfo;
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
         }
         if(baralhoa[i].hab[posAleatoria] > baralhob[i].hab[posAleatoria]){
-            fimA++;
-            fimB--;
-            teste=0;
+            vencedor=0;
+            reordenarCartas(primeiraCarta, baralhoa, baralhob, vencedor);
             posAleatoria = -1;
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
-            juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB, teste);
         } else if(baralhob[i].hab[posAleatoria] > baralhoa[i].hab[posAleatoria]) {
-            fimA--;
-            fimB++;
-            teste = 1;
+            vencedor=1;
+            reordenarCartas(primeiraCarta, baralhoa, baralhob, vencedor);
             posAleatoria = -1;
             if(posAleatoria == -1){
                 posAleatoria = rand()%3;
             }
-            juntarCartas(aux, baralhoa, baralhob, i, fimA, fimB, teste);
-            //teste
         }
     }
 }
